@@ -5,19 +5,8 @@
 using namespace std;
 
 //WORD
-    //Construtor
-    Word::Word(){
-        firstLetter = -1;
-    }
-
-    //Getters
-    string Word::getWord(){
-        return word;
-    }
-
     //Setters
-    void Word::setWord(string input){
-        word = input;
+    void Word::inityWord(){
         order = new int[word.length()];
         swapToLowercase();
         setOrder();
@@ -45,3 +34,13 @@ using namespace std;
         cout << "Palavra: " << word << endl;
         cout << "FirstLetter: "<< firstLetter << endl; 
     }
+
+    bool Word::operator>(const Word& x){
+        if (word>x.word){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+

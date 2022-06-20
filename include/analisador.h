@@ -3,20 +3,26 @@
 
 using namespace std;
 
-class Word{
+class Word{    
     public:
-        //Construtor
-        Word();
-        //getters
-        string getWord();
-
-        //Setters
-        void setWord(string input);
-        void setOrder();
-
         //Methods
+        void inityWord();
+        void setOrder();
         void swapToLowercase();
         void Print();
+
+        //Operators
+        bool operator>(const Word& x);
+        friend istream &operator>>( istream  &input, Word &D ) { 
+            input >> D.word;
+            return input;            
+        }
+
+        friend ostream &operator<<( ostream  &stream, Word &D ) { 
+            stream << D.word;
+            return stream;            
+        }
+
 
     private:
         string word;
