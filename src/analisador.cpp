@@ -21,22 +21,27 @@ using namespace std;
         order = new int[word.length()];
         swapToLowercase();
         setOrder();
+        firstLetter = word[0];
     }
 
     void Word::setOrder(){
-        cout << word << endl;
-        for(int i=0; i<word.length();i++){
+        int n = word.length();
+        for(int i=0; i<n ;i++){
             order[i]=word[i];
-            cout << order[i]<< endl;
         }
     }
 
     //Methods
     void Word::swapToLowercase(){
-        for(int i=0; i< word.length(); i++){
+        int n = word.length();
+        for(int i=0; i< n; i++){
             if(word[i] >= 65 && word[i] <= 90){
                 word[i]=word[i]+32;
             }
         }
     }
 
+    void Word::Print(){
+        cout << "Palavra: " << word << endl;
+        cout << "FirstLetter: "<< firstLetter << endl; 
+    }

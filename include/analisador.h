@@ -16,6 +16,7 @@ class Word{
 
         //Methods
         void swapToLowercase();
+        void Print();
 
     private:
         string word;

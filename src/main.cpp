@@ -11,5 +11,5 @@ int main()
     cin >> palavraInput;
 
     w1.setWord(palavraInput);
-    
+    w1.Print();
 }
