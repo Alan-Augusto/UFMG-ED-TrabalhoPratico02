@@ -22,6 +22,7 @@ MAIN = main
 TARGET = main
 SRC = $(wildcard $(SRC_FOLDER)*.cpp)
 OBJ = $(patsubst $(SRC_FOLDER)%.cpp, $(OBJ_FOLDER)%.o, $(SRC))
+LOGDATE = $(shell date +"%d/%m/%Y as %kh:%Mm")
 
 $(OBJ_FOLDER)%.o: $(SRC_FOLDER)%.cpp
 	$(CC) $(CXXFLAGS) -c $< -o $@ -I$(INCLUDE_FOLDER)
@@ -43,3 +44,8 @@ clean:
 	rm -rf gmon.out
 #	rm -rf gprof.txt
 	clear
+
+git:
+	git add .
+	git commit -m "Atualizacao de $(LOGDATE)"
+	git push

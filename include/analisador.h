@@ -3,6 +3,8 @@
 
 using namespace std;
 
+int LexOrder = 1;
+
 class Word{    
     public:
         //Methods
@@ -10,9 +12,11 @@ class Word{
         void setOrder();
         void swapToLowercase();
         void Print();
+        void Test();
 
         //Operators
         bool operator>(const Word& x);
+
         friend istream &operator>>( istream  &input, Word &D ) { 
             input >> D.word;
             return input;            

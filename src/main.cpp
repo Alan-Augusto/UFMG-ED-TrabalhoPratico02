@@ -4,12 +4,16 @@
 
 using namespace std;
 
+extern int LexOrder;
+
 int main()
 {
     int n;
     cin >> n;
 
     Word *words = new Word[n];
+
+    LexOrder = 20;
 
     for(int i =0; i<n; i++){
         Word w;

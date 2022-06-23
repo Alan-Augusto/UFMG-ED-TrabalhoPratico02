@@ -4,6 +4,8 @@
 
 using namespace std;
 
+extern int LexOrder;
+
 //WORD
     //Setters
     void Word::inityWord(){
@@ -35,6 +37,12 @@ using namespace std;
         cout << "FirstLetter: "<< firstLetter << endl; 
     }
 
+    void Word::Test(){
+        
+        cout << LexOrder;
+    }
+
+    //Operators
     bool Word::operator>(const Word& x){
         if (word>x.word){
             return true;
