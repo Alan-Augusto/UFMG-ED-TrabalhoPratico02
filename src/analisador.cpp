@@ -4,7 +4,6 @@
 
 using namespace std;
 
-extern int LexOrder;
 
 //WORD
     //Setters
@@ -39,7 +38,7 @@ extern int LexOrder;
 
     void Word::Test(){
         
-        cout << LexOrder;
+        cout << endl;
     }
 
     //Operators

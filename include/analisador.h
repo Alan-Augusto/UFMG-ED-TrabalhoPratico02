@@ -3,7 +3,6 @@
 
 using namespace std;
 
-int LexOrder = 1;
 
 class Word{    
     public:
