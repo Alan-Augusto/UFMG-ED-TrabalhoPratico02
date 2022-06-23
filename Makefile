@@ -47,5 +47,5 @@ clean:
 
 git:
 	git add .
-	git commit -m "Atualizacao de $(LOGDATE)"
+	git commit -m "Atualização de $(LOGDATE)"
 	git push
