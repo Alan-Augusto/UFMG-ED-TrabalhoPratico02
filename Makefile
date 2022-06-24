@@ -47,5 +47,7 @@ clean:
 
 git:
 	git add .
-	git commit -m "Atualização de $(LOGDATE)"
+	@echo "your commit text: "; \
+    read AGE ;\
+	git commit -m "Atualização de $(LOGDATE) - $$AGE"
 	git push
