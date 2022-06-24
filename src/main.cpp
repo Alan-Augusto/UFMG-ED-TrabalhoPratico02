@@ -86,21 +86,21 @@ int main(int argc, char ** argv)
     cout << "AAAAAAAA"<< endl;
     cout << inputNameArq << "and " << outputNameArq << endl;;
 
-/*
+
+    Text T;
+
     int n;
     cout << "tamanho: ";
     cin >> n;
-    cout << endl;
-
-    Word *words = new Word[n];
 
     string lixo;
     getline(cin, lixo);
 
+    /*
     cout << "LexOrder: "<< endl;
     string lexorder;
     getline(cin, lexorder);
-
+*/
 
     cout << "palavras: "<< endl;
     for(int i =0; i<n; i++){
@@ -108,12 +108,13 @@ int main(int argc, char ** argv)
         string palavraInput;
         cin >> w;
         //w.inityWord();
-
-        words[i]= w;
+        w >> T;
     }
-    
-    cout << "LexOrder: " << lexorder << endl;
 
+    cout << T.text << endl;
+
+/*
+    cout << "LexOrder: " << lexorder << endl;
     for(int j =0; j<n; j++){
          cout << words[j] << "||" << words[j].orderWord << endl;
         if(j>0){
@@ -123,7 +124,6 @@ int main(int argc, char ** argv)
         }
     }  
 */
-
     InputFile.close();
     OutputFile.close();
 }

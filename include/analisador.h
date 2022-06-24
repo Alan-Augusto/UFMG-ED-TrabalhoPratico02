@@ -30,18 +30,21 @@ class Word{
         }
 
         string orderWord;
-    private:
         string word;
 
 };
 
-class analyzer{
+class Text{
     public:
-        void insertWord();
         void swapWord(Word* a, Word *b);
         int Size();
 
+        friend Word &operator>>( Word  &input, Text &D ) { 
+        D.text = D.text + input.word + " ";
+        return input;            
+        }
+
+        string text;
     private:
         int size;
-        Word words[10];
 };
