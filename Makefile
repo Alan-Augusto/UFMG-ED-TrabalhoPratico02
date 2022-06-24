@@ -22,7 +22,7 @@ MAIN = main
 TARGET = main
 SRC = $(wildcard $(SRC_FOLDER)*.cpp)
 OBJ = $(patsubst $(SRC_FOLDER)%.cpp, $(OBJ_FOLDER)%.o, $(SRC))
-LOGDATE = $(shell date +"%d/%m/%Y as %kh:%Mm")
+LOGDATE = $(shell date +"%d/%m at %kh:%Mm")
 
 $(OBJ_FOLDER)%.o: $(SRC_FOLDER)%.cpp
 	$(CC) $(CXXFLAGS) -c $< -o $@ -I$(INCLUDE_FOLDER)
@@ -49,5 +49,5 @@ git:
 	git add .
 	@echo "your commit text: "; \
     read AGE ;\
-	git commit -m "Atualização de $(LOGDATE) - $$AGE"
+	git commit -m "Update $(LOGDATE) - $$AGE"
 	git push
