@@ -41,7 +41,5 @@ int main()
                 cout << words[j] << " é maior que " << words[j-1] << endl;
             }
         }
-    }
-
-    
+    }  
 }
