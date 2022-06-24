@@ -3,21 +3,24 @@
 
 using namespace std;
 
-
 class Word{    
     public:
         //Methods
         void inityWord();
         void setOrder();
         void swapToLowercase();
+        void setOrderWord();  
         void Print();
         void Test();
 
         //Operators
         bool operator>(const Word& x);
+        bool operator<(const Word& x);
 
         friend istream &operator>>( istream  &input, Word &D ) { 
             input >> D.word;
+            D.swapToLowercase();
+            D.setOrderWord();   
             return input;            
         }
 
@@ -26,11 +29,19 @@ class Word{
             return stream;            
         }
 
-
+        string orderWord;
     private:
         string word;
-        //Vetor que armazena cada valor em ASCII da palavra.
-        int *order;
-        int firstLetter;
 
+};
+
+class analyzer{
+    public:
+        void insertWord();
+        void swapWord(Word* a, Word *b);
+        int Size();
+
+    private:
+        int size;
+        Word words[10];
 };

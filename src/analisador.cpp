@@ -8,16 +8,16 @@ using namespace std;
 //WORD
     //Setters
     void Word::inityWord(){
-        order = new int[word.length()];
-        swapToLowercase();
-        setOrder();
-        firstLetter = word[0];
+       // order = new int[word.length()];
+       // swapToLowercase();
+       // setOrder();
+       // firstLetter = word[0];
     }
 
     void Word::setOrder(){
         int n = word.length();
         for(int i=0; i<n ;i++){
-            order[i]=word[i];
+            //order[i]=word[i];
         }
     }
 
@@ -31,19 +31,31 @@ using namespace std;
         }
     }
 
+    void Word::setOrderWord(){
+        orderWord = word;
+    }
+
     void Word::Print(){
         cout << "Palavra: " << word << endl;
-        cout << "FirstLetter: "<< firstLetter << endl; 
+        //cout << "FirstLetter: "<< firstLetter << endl; 
     }
 
     void Word::Test(){
-        
-        cout << endl;
+        //
     }
 
     //Operators
     bool Word::operator>(const Word& x){
-        if (word>x.word){
+        if (orderWord>x.orderWord){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    bool Word::operator<(const Word& x){
+        if (orderWord<x.orderWord){
             return true;
         }
         else{

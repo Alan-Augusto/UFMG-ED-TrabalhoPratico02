@@ -27,7 +27,7 @@ int main()
         Word w;
         string palavraInput;
         cin >> w;
-        w.inityWord();
+        //w.inityWord();
 
         words[i]= w;
     }
@@ -35,6 +35,7 @@ int main()
     cout << "LexOrder: " << lexorder << endl;
 
     for(int j =0; j<n; j++){
+         cout << words[j] << "||" << words[j].orderWord << endl;
         if(j>0){
             if(words[j] > words[j-1]){
                 cout << words[j] << " é maior que " << words[j-1] << endl;
