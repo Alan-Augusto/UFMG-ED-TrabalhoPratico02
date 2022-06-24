@@ -23,6 +23,7 @@ TARGET = main
 SRC = $(wildcard $(SRC_FOLDER)*.cpp)
 OBJ = $(patsubst $(SRC_FOLDER)%.cpp, $(OBJ_FOLDER)%.o, $(SRC))
 LOGDATE = $(shell date +"%b/%d at %kh:%Mm")
+EXE = $(BIN_FOLFER)main
 
 $(OBJ_FOLDER)%.o: $(SRC_FOLDER)%.cpp
 	$(CC) $(CXXFLAGS) -c $< -o $@ -I$(INCLUDE_FOLDER)
@@ -33,14 +34,14 @@ comp: $(OBJ)
 	$(CC) $(CXXFLAGS) -o $(BIN_FOLFER)$(TARGET) $(OBJ)
 	
 run:
-	./bin/main
+	$(EXE) -i ./input/1.tst.i -o ./output/teste.txt
 
 gprof:
 #	gprof ./bin/main gmon.out > gprof.txt
 
 clean: 
 	@rm -rf $(OBJ_FOLDER)* $(BIN_FOLFER)* $(TARGET)
-	rm -rf $(OUTPUT_FOLDER) 
+#	rm -rf $(OUTPUT_FOLDER) 
 	rm -rf gmon.out
 #	rm -rf gprof.txt
 	clear
