@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <fstream>
 #include <analisador.h>
+#include <regex>
 
 using namespace std;
 
@@ -23,13 +25,10 @@ using namespace std;
     }
 
     //Methods
-    void Word::swapToLowercase(){
-        int n = word.length();
-        for(int i=0; i< n; i++){
-            if(word[i] >= 65 && word[i] <= 90){
-                word[i]=word[i]+32;
-            }
-        }
+    void Word::swapToLowercase(){      
+        for_each(word.begin(), word.end(), [](char & c){
+            c = ::tolower(c);
+        });
     }
 
     void Word::setOrderWord(){
@@ -66,13 +65,49 @@ using namespace std;
 
 //TEXT
     //Methods
+    void Text::CleanText(){
+        regex pattern("[^A-Za-z0-9 -]");
+        text = regex_replace(text, pattern, "");
+        
+        //Colocar em minpuscula
+        for_each(text.begin(), text.end(), [](char & c){c = ::tolower(c);});
+
+        stringstream it(text);
+        string TextClean;
+        string aux;
+        while (it>>aux)
+        {
+            TextClean += (aux + " ");
+            
+        }
+        text = TextClean;
+    }
+
+    void Text::CleanOrder(){
+        stringstream it(order);
+        string orderCLean;
+        string aux;
+        for(int i = 0; i<26; i++){
+            it >> aux;
+            orderCLean = orderCLean + aux + " ";
+        }
+        order = orderCLean;
+    }
+
     void Text::InputText(ifstream &InputFile){
         string line;
         while (getline(InputFile, line) && line != "#ORDEM")
         {
             //Adiciona a linha no texto
-            text += line + " ";
+            if(line[line.length()-1] != ' '){
+                text += line + " ";
+            }
+            else{
+                text += line;
+            }
         }
+        //cout << "======TEXO SEM LIMPAR======\n" << text << endl;
+        CleanText();
     }
 
     void Text::InputOrder(ifstream &InputFile){
@@ -82,4 +117,5 @@ using namespace std;
             //Adiciona a linha no texto
             order += line;
         }
+        CleanOrder();
     }

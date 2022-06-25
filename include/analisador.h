@@ -6,6 +6,8 @@ using namespace std;
 
 class Word{    
     public:
+        string orderWord;
+        string word;        
         //Methods
         void inityWord();
         void setOrder();
@@ -17,31 +19,33 @@ class Word{
         //Operators
         bool operator>(const Word& x);
         bool operator<(const Word& x);
-
         friend istream &operator>>( istream  &input, Word &D ) { 
             input >> D.word;
             D.swapToLowercase();
             D.setOrderWord();   
             return input;            
         }
-
         friend ostream &operator<<( ostream  &stream, Word &D ) { 
             stream << D.word;
             return stream;            
         }
 
-        string orderWord;
-        string word;
-
 };
 
 class Text{
     public:
+        string text;
+        string order;
+        
+        //Methods
         void swapWord(Word* a, Word *b);
+        void CleanText();
+        void CleanOrder();
+
         void InputText(ifstream &InputFile);
         void InputOrder(ifstream &InputFile);
-        int Size();
 
+        //Operators
         friend Word &operator>>( Word  &input, Text &D ) { 
         D.text = D.text + input.word + " ";
         return input;            
@@ -52,8 +56,5 @@ class Text{
         return input;            
         }
 
-        string text;
-        string order;
-    private:
-        int size;
+
 };
