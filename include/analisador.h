@@ -11,18 +11,12 @@ class Word{
         //Methods
         void inityWord();
         void setOrder();
-        void swapToLowercase();
-        void setOrderWord();  
-        void Print();
-        void Test();
 
         //Operators
         bool operator>(const Word& x);
         bool operator<(const Word& x);
         friend istream &operator>>( istream  &input, Word &D ) { 
-            input >> D.word;
-            D.swapToLowercase();
-            D.setOrderWord();   
+            input >> D.word; 
             return input;            
         }
         friend ostream &operator<<( ostream  &stream, Word &D ) { 
@@ -36,11 +30,15 @@ class Text{
     public:
         string text;
         string order;
+        int size;
+        Word* words;
+
         
         //Methods
         void swapWord(Word* a, Word *b);
         void CleanText();
         void CleanOrder();
+        void FillWords();
 
         void InputText(ifstream &InputFile);
         void InputOrder(ifstream &InputFile);
