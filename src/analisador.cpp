@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 #include <analisador.h>
 
 using namespace std;
@@ -63,3 +64,22 @@ using namespace std;
         }
     }
 
+//TEXT
+    //Methods
+    void Text::InputText(ifstream &InputFile){
+        string line;
+        while (getline(InputFile, line) && line != "#ORDEM")
+        {
+            //Adiciona a linha no texto
+            text += line + " ";
+        }
+    }
+
+    void Text::InputOrder(ifstream &InputFile){
+        string line;
+        while (getline(InputFile, line) && line != "#TEXTO")
+        {
+            //Adiciona a linha no texto
+            order += line;
+        }
+    }

@@ -73,7 +73,7 @@ void parse_args(int argc,char ** argv){
 
 int main(int argc, char ** argv)
 {
-    // avaliar linha de comando
+    // Avaliar linha de comando
     parse_args(argc,argv);
 
     //Abertura dos arquivos
@@ -83,47 +83,31 @@ int main(int argc, char ** argv)
     ofstream OutputFile(outputNameArq);
     Assert(OutputFile.is_open(), "Opening error in output file");
 
-    cout << "AAAAAAAA"<< endl;
-    cout << inputNameArq << "and " << outputNameArq << endl;;
-
-
+    //Criação do texto a ser lido:
     Text T;
 
-    int n;
-    cout << "tamanho: ";
-    cin >> n;
+    //Obter qual informação será recolhida
+    string information;
+    //Vai receber cada linha.
+    string line;
+    getline(InputFile, information);
 
-    string lixo;
-    getline(cin, lixo);
-
-    /*
-    cout << "LexOrder: "<< endl;
-    string lexorder;
-    getline(cin, lexorder);
-*/
-
-    cout << "palavras: "<< endl;
-    for(int i =0; i<n; i++){
-        Word w;
-        string palavraInput;
-        cin >> w;
-        //w.inityWord();
-        w >> T;
+            //Remover bug do getline
+            //string lixo;
+            //getline(InputFile, lixo);
+    
+    //Se a primeira informação for o texto
+    if(information == "#TEXTO"){
+        T.InputText(InputFile);
+        T.InputOrder(InputFile);
+    }
+    else if(information == "#ORDEM"){
+        T.InputOrder(InputFile);
+        T.InputText(InputFile);
     }
 
-    cout << T.text << endl;
-
-/*
-    cout << "LexOrder: " << lexorder << endl;
-    for(int j =0; j<n; j++){
-         cout << words[j] << "||" << words[j].orderWord << endl;
-        if(j>0){
-            if(words[j] > words[j-1]){
-                cout << words[j] << " é maior que " << words[j-1] << endl;
-            }
-        }
-    }  
-*/
+    cout << "======TEXO======\n" << T.text << endl;
+    cout << "======ORDEM======\n" << T.order << endl;
     InputFile.close();
     OutputFile.close();
 }

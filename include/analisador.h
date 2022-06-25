@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -37,6 +38,8 @@ class Word{
 class Text{
     public:
         void swapWord(Word* a, Word *b);
+        void InputText(ifstream &InputFile);
+        void InputOrder(ifstream &InputFile);
         int Size();
 
         friend Word &operator>>( Word  &input, Text &D ) { 
@@ -44,7 +47,13 @@ class Text{
         return input;            
         }
 
+        friend string &operator>>( string  &input, Text &D ) { 
+        D.text = D.text + input;
+        return input;            
+        }
+
         string text;
+        string order;
     private:
         int size;
 };
