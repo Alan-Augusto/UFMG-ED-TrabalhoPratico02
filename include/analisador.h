@@ -7,9 +7,9 @@ using namespace std;
 class Word{    
     public:
         string orderWord;
-        string word;        
+        string word;     
+        string wordInOrder;   
         //Methods
-        void inityWord();
         void setOrder();
 
         //Operators
@@ -39,6 +39,7 @@ class Text{
         void CleanText();
         void CleanOrder();
         void FillWords();
+        void SetOrder();
 
         void InputText(ifstream &InputFile);
         void InputOrder(ifstream &InputFile);

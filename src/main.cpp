@@ -100,11 +100,15 @@ int main(int argc, char ** argv)
     if(information == "#TEXTO"){
         T.InputText(InputFile);
         T.InputOrder(InputFile);
+        T.SetOrder();
     }
     else if(information == "#ORDEM"){
         T.InputOrder(InputFile);
         T.InputText(InputFile);
+        T.SetOrder();
     }
+    
+    
 
     cout << "======TEXO======\n" << T.text << endl;
     cout << "======ORDEM======\n" << T.order << endl;

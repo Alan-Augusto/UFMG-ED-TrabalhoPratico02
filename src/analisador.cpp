@@ -9,22 +9,17 @@ using namespace std;
 
 
 //WORD
-    //Setters
-    void Word::inityWord(){
-       // order = new int[word.length()];
-       // swapToLowercase();
-       // setOrder();
-       // firstLetter = word[0];
-    }
-
-    void Word::setOrder(){
-        int n = word.length();
-        for(int i=0; i<n ;i++){
-            //order[i]=word[i];
-        }
-    }
 
     //Methods
+    void Word::setOrder(){
+        int n = word.length();
+        wordInOrder= word;
+        for(int i=0; i<n ;i++){
+            // T C U X B A V Y M Q N ...
+            //CACO --> UTUQ
+            //PENDENTE COLOCAR NA ORDEM 
+        }
+    }
 
     //Operators
     bool Word::operator>(const Word& x){
@@ -74,12 +69,17 @@ using namespace std;
     }
 
     void Text::CleanOrder(){
+        //Colocar em minpuscula
+        for_each(order.begin(), order.end(), [](char & c){c = ::tolower(c);});
+        
+        //Manipulação de strings
         stringstream it(order);
         string orderCLean;
         string aux;
+
         for(int i = 0; i<26; i++){
             it >> aux;
-            orderCLean = orderCLean + aux + " ";
+            orderCLean = orderCLean + aux;
         }
         order = orderCLean;
     }
@@ -116,13 +116,21 @@ using namespace std;
     void Text::FillWords(){
         //string de iteração
         stringstream it(text);
-        cout << "\nATRIBUINDO PALAVRAS:" << endl;
         for (int i = 0; i < size; i++)
         {
             it >> words[i];
-
-            cout << words[i] << "|";
         }
-        cout << endl;
         
+    }
+
+    void Text::SetOrder(){
+        
+        cout << "GERANDO PALAVRAS DE ORDENAÇÃO:"<<endl;
+        for (int i = 0; i < size; i++)
+        {
+            words[i].orderWord = order;
+            words[i].setOrder();
+            string x = words[i].wordInOrder;
+            cout << words[i] << "|"<< x << endl;
+        }
     }
