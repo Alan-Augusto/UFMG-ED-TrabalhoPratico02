@@ -6,11 +6,12 @@ using namespace std;
 
 class Word{    
     public:
-        string orderWord;
+        //Lexigr
+        string LexOrder;
         string word;     
         string wordInOrder;   
         //Methods
-        void setOrder();
+        void setOrder(string order);
 
         //Operators
         bool operator>(const Word& x);
@@ -57,3 +58,6 @@ class Text{
 
 
 };
+
+//Funções Globais
+void quicksort (Word *A, int n, int M, int S);

@@ -9,6 +9,8 @@ using namespace std;
 char *logNameArq = NULL;
 char *inputNameArq = NULL;
 char *outputNameArq  = NULL;
+int M;
+int S;
 
 void Assert(bool x, string text){
     if(!x){
@@ -45,19 +47,19 @@ void parse_args(int argc,char ** argv){
             break;
 
          case 'm':
-
+            M = atoi(optarg);
             break;
 
          case 'M':
-
+            M = atoi(optarg);
             break;
 
          case 's':
-
+            S = atoi(optarg);
             break;
 
          case 'S':
-
+            S = atoi(optarg);
             break;
 
          case 'l':
@@ -108,7 +110,8 @@ int main(int argc, char ** argv)
         T.SetOrder();
     }
     
-    
+   //quicksort(T.words, T.size, M, S);
+    //Falta M e S por parâmetro
 
     cout << "======TEXO======\n" << T.text << endl;
     cout << "======ORDEM======\n" << T.order << endl;
