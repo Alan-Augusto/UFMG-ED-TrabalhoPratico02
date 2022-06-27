@@ -9,6 +9,14 @@
 using namespace std;
 
 //ORDENAÇÃO
+
+void swap (Word *A, Word *B){
+    Word *aux;
+    aux = A;
+    A = B;
+    B = aux;
+}
+
 void particao (int esq, int dir, int *i, int *j, Word *A, int M, int S) {
    Word x, w;
    
@@ -26,8 +34,8 @@ void particao (int esq, int dir, int *i, int *j, Word *A, int M, int S) {
    
    //leMemLog((long int)(&(x)),sizeof(palavra), 0);
    do {
-    while (x.wordInOrder > A[*i].wordInOrder) (*i)++;  
-    while (x.wordInOrder < A[*j].wordInOrder) (*j)--;  
+    while (x > A[*i]) (*i)++;  
+    while (x < A[*j]) (*j)--;  
     if (*i <= *j) {
       w = A[*i]; A[*i] = A[*j]; A[*j] = w;
       (*i)++; (*j)--;
@@ -41,7 +49,7 @@ void insertsort(Word *array, int n) {
    for(i = 0; i < n-1; i++) {
       trocou = 0;
       for(j = 1; j < n-i; j++){
-         if (array[j].wordInOrder < array[j-1].wordInOrder) {
+         if (array[j] < array[j-1]) {
             swap(array[j-1], array[j]);
             trocou = 1;
          }
@@ -195,5 +203,11 @@ void quicksort (Word *A, int n, int M, int S) {
             //words[i].LexOrder = order;
             words[i].setOrder(order);
             cout << words[i] << "|"<< words[i].wordInOrder << endl;
+        }
+    }
+
+    void Text::Print(){
+        for(int i = 0; i<size; i++){
+            cout << words[i] << endl;
         }
     }

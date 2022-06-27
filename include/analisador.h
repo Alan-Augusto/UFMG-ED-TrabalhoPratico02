@@ -41,6 +41,7 @@ class Text{
         void CleanOrder();
         void FillWords();
         void SetOrder();
+        void Print();
 
         void InputText(ifstream &InputFile);
         void InputOrder(ifstream &InputFile);

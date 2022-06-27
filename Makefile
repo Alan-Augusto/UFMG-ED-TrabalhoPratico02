@@ -34,7 +34,7 @@ comp: $(OBJ)
 	$(CC) $(CXXFLAGS) -o $(BIN_FOLFER)$(TARGET) $(OBJ)
 	
 run:
-	$(EXE) -i ./input/2.tst.i -o ./output/teste.txt
+	$(EXE) -i ./input/2.tst.i -o ./output/teste.txt -m 4 -s 5
 
 gprof:
 #	gprof ./bin/main gmon.out > gprof.txt
