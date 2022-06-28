@@ -9,20 +9,28 @@ class Word{
         //Lexigr
         string LexOrder;
         string word;     
-        string wordInOrder;   
+        string wordInOrder;  
+        int qtd = 1; 
         //Methods
         void setOrder(string order);
 
         //Operators
         bool operator>(const Word& x);
         bool operator<(const Word& x);
+        bool operator==(const Word& x);
+        void operator++(int x);
+        
         friend istream &operator>>( istream  &input, Word &D ) { 
-            input >> D.word; 
+            input >> D.word;
             return input;            
         }
         friend ostream &operator<<( ostream  &stream, Word &D ) { 
-            stream << D.word;
+            stream << D.word << " " << D.qtd;
             return stream;            
+        }
+        friend Word &operator>>( Word  &input, Word &D ) { 
+            D.word = input.word; 
+            return input;            
         }
 
 };
@@ -35,28 +43,34 @@ class Text{
         Word* words;
 
         
-        //Methods
-        void swapWord(Word* a, Word *b);
+    //Methods
         void CleanText();
         void CleanOrder();
         void FillWords();
         void SetOrder();
-        void Print();
 
         void InputText(ifstream &InputFile);
         void InputOrder(ifstream &InputFile);
 
-        //Operators
+    //Operators
+        //Atribuição de palavra
         friend Word &operator>>( Word  &input, Text &D ) { 
-        D.text = D.text + input.word + " ";
-        return input;            
+            D.text = D.text + input.word + " ";
+            return input;            
         }
-
+        //Atribuição de string 
         friend string &operator>>( string  &input, Text &D ) { 
         D.text = D.text + input;
         return input;            
         }
-
+        //Impressão
+        friend ostream &operator<<( ostream  &stream, Text &D ) { 
+            for(int i = 0; i<D.size; i++){
+                stream << D.words[i] << endl;
+            }
+            
+            return stream;            
+        }
 
 };
 

@@ -8,6 +8,8 @@
 
 using namespace std;
 
+string alphabet = "abcdefghijklmnopqrstuvwxyz";
+
 //ORDENAÇÃO
 
 void swap (Word *A, Word *B){
@@ -88,7 +90,7 @@ void quicksort (Word *A, int n, int M, int S) {
         wordInOrder= word;
 
         for(int i=0; i<n ;i++){
-            wordInOrder[i] = order[wordInOrder[i]-97];
+            wordInOrder[i] = alphabet[order.find(wordInOrder[i])];
         }
     }
 
@@ -110,6 +112,20 @@ void quicksort (Word *A, int n, int M, int S) {
             return false;
         }
     }
+
+    bool Word::operator==(const Word& x){
+        if (word==x.word){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    void Word::operator++(int x){
+        qtd ++;
+    }
+
 
 //TEXT
     //Methods
@@ -187,22 +203,43 @@ void quicksort (Word *A, int n, int M, int S) {
     void Text::FillWords(){
         //string de iteração
         stringstream it(text);
+        Word aux;
+        int j = 0;
         for (int i = 0; i < size; i++)
         {
-            it >> words[i];
+            it >> aux;
+            if(i>0){
+                bool achou = false;
+                for (int k = j-1; k >= 0; k--)
+                {   
+                    if((aux) == words[k]){
+                        words[k]++;
+                        achou = true;
+                        break;
+                    }
+                }
+                if( !achou ){
+                    aux >> words[j];
+                    j++;
+                }
+            }
+            else{
+                aux >> words[j];
+                j++;
+            }
         }
+        size = j;
         
     }
 
     void Text::SetOrder(){
         
-        cout << "GERANDO PALAVRAS DE ORDENAÇÃO:"<<endl;
         for (int i = 0; i < size; i++)
         {
             //Adiciona a ordem lexicográfica em cada palavra
             //words[i].LexOrder = order;
             words[i].setOrder(order);
-            cout << words[i] << "|"<< words[i].wordInOrder << endl;
+            //cout << words[i] << "|"<< words[i].wordInOrder << endl;
         }
     }
 

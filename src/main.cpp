@@ -112,8 +112,7 @@ int main(int argc, char ** argv)
     
    quicksort(T.words, T.size, M, S);
    cout << "\n======Texto ordenado======" << endl;
-   T.Print();
-    //Falta M e S por parâmetro
+   cout << T;
 
     cout << "\n======TEXO======\n" << T.text << endl;
     cout << "======ORDEM======\n" << T.order << endl;
