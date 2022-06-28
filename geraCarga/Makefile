@@ -22,7 +22,6 @@ MAIN = main
 TARGET = main
 SRC = $(wildcard $(SRC_FOLDER)*.cpp)
 OBJ = $(patsubst $(SRC_FOLDER)%.cpp, $(OBJ_FOLDER)%.o, $(SRC))
-LOGDATE = $(shell date +"%b/%d at %kh:%Mm")
 EXE = $(BIN_FOLFER)main
 
 $(OBJ_FOLDER)%.o: $(SRC_FOLDER)%.cpp
@@ -34,30 +33,20 @@ comp: $(OBJ)
 	$(CC) $(CXXFLAGS) -o $(BIN_FOLFER)$(TARGET) $(OBJ)
 	
 run:
-	$(EXE) -i ./input/1.tst.i -o ./output/output1.txt -m 4 -s 5
-	$(EXE) -i ./input/2.tst.i -o ./output/output2.txt -m 4 -s 5
-	$(EXE) -i ./input/3.tst.i -o ./output/output3.txt -m 4 -s 5
-	$(EXE) -i ./input/4.tst.i -o ./output/output4.txt -m 4 -s 5
-	$(EXE) -i ./input/5.tst.i -o ./output/output5.txt -m 4 -s 5
-	$(EXE) -i ./input/6.tst.i -o ./output/output6.txt -m 4 -s 5
-	$(EXE) -i ./input/7.tst.i -o ./output/output7.txt -m 4 -s 5
-	$(EXE) -i ./input/8.tst.i -o ./output/output8.txt -m 4 -s 5
-	$(EXE) -i ./input/9.tst.i -o ./output/output9.txt -m 4 -s 5
-	$(EXE) -i ./input/10.tst.i -o ./output/output10.txt -m 4 -s 5
+	$(EXE) -o ./output/carga10.txt -w 10 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga50.txt -w 50 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga100.txt -w 100 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga500.txt -w 500 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga1000.txt -w 1000 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga1500.txt -w 1500 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 
 gprof:
-	gprof ./bin/main gmon.out > gprof.txt
+#	gprof ./bin/main gmon.out > gprof.txt
 
 clean: 
 	@rm -rf $(OBJ_FOLDER)* $(BIN_FOLFER)* $(TARGET)
 	@rm -rf $(OUTPUT_FOLDER)* 
 	rm -rf gmon.out
-	rm -rf gprof.txt
+#	rm -rf gprof.txt
 	clear
-
-git:
-	git add .
-	@echo "your commit text: "; \
-    read AGE ;\
-	git commit -m "Update $(LOGDATE) - $$AGE"
-	git push

@@ -11,40 +11,6 @@ using namespace std;
 string alphabet = "abcdefghijklmnopqrstuvwxyz";
 
 //ORDENAÇÃO
-void swap (Word *A, Word *B){
-    Word *aux;
-    aux = A;
-    A = B;
-    B = aux;
-}
-
-void particao (int esq, int dir, int *i, int *j, Word *A, int M, int S) {
-   Word x, w;
-   
-   *i = esq; *j = dir;
-
-   int contador = 0;
-   for (int z = 0; z < M; z++) {
-      if(esq + contador < dir) {
-         contador++;
-      }
-   }
-   
-   int soma = esq+(esq + contador);
-   x = A[soma/2]; // obtém o pivô x
-   
-   //leMemLog((long int)(&(x)),sizeof(palavra), 0);
-   do {
-    while (x > A[*i]) (*i)++;  
-    while (x < A[*j]) (*j)--;  
-    if (*i <= *j) {
-      w = A[*i]; A[*i] = A[*j]; A[*j] = w;
-      (*i)++; (*j)--;
-    }
-   } while (*i <= *j);
-   
-}
-
 void insertsort(Word *array, int n) {
    int i, j, trocou;
    for(i = 0; i < n-1; i++) {
@@ -54,7 +20,7 @@ void insertsort(Word *array, int n) {
             swap(array[j-1], array[j]);
             trocou = 1;
          }
-         //leMemLog((long int)(&(array[j])),sizeof(palavra), 0);
+         //leMemLog((long int)(&(array[j])),sizeof(Word), 2);
       }
       if (!trocou) {
          break;
@@ -62,15 +28,59 @@ void insertsort(Word *array, int n) {
    }
 }
 
+void particao (int esq, int dir, int *i, int *j, Word *A, int M, int S) {
+   Word x, w;
+   
+   *i = esq; *j = dir;
+
+   // encontra o pivô de acordo com o paramêtro M
+   int contador = 0;
+   for (int z = 0; z < M; z++) {
+      if(esq + contador < dir) {
+         contador++;
+      }
+   }
+   Word aux[contador+1];
+   for (int z = 0; z < contador + 1; z++) {
+      aux[z] = A[esq + z];
+   }
+   insertsort(aux, contador+1);
+   int soma = contador + 1;
+   x = aux[soma/2];
+     
+   //leMemLog((long int)(&(x)),sizeof(Word), 2);
+   do {
+      while (x > A[*i]) (*i)++;  
+      while (x < A[*j]) (*j)--;  
+      if (*i <= *j) {
+         w = A[*i]; A[*i] = A[*j]; A[*j] = w;
+         (*i)++; (*j)--;
+      }
+   } while (*i <= *j);
+   
+}
+
+void selectionsort(Word *array, int esq, int dir, int n) {
+   int i, j, min;
+   n += esq; j = dir;
+
+   for (i = esq; i < n - 1; i++) {
+      min = i;
+      for (j = i + 1 ; j < n; j++) {
+         if (array[j] < array[min])
+            min = j;
+      }
+      swap(array[i], array[min]);
+   }
+}
+
 void ordena (int esq, int dir, Word *A, int M, int S) {
    int i, j; 
-   int n = dir - esq +1;
-   int auxS = sqrt(S);
 
-   if (n < auxS){
-      insertsort(A, n);
-   }
+   int n = dir - esq +1;
    
+   if (n <= S) 
+      selectionsort(A, esq, dir, n);
    else {
       particao (esq, dir, &i, &j, A, M, S);
       if (esq < j) ordena (esq, j, A, M, S);
@@ -132,7 +142,7 @@ void quicksort (Word *A, int n, int M, int S) {
 //TEXT
     //Methods
     void Text::CleanText(){
-        //Zera o contador de palavras da classe
+        //Zera o contador de Words da classe
         size = 0;
 
         //Elimina os caracteres desnecessários
@@ -142,14 +152,14 @@ void quicksort (Word *A, int n, int M, int S) {
         //Colocar em minpuscula
         for_each(text.begin(), text.end(), [](char & c){c = ::tolower(c);});
 
-        //Coloca apenas as palavras puras com um espaço
+        //Coloca apenas as Words puras com um espaço
         stringstream it(text);
         string TextClean;
         string aux;
         while (it>>aux)
         {
             TextClean += (aux + " ");
-            //SOma uma unidade a cada palavra adicionada
+            //SOma uma unidade a cada Word adicionada
             size ++;
             
         }
@@ -186,9 +196,9 @@ void quicksort (Word *A, int n, int M, int S) {
             }
         }
         CleanText();
-        //Aloca o vetor de palavras
+        //Aloca o vetor de Words
         words = new Word[size];
-        //ALoca o vetor de palavras
+        //ALoca o vetor de Words
         FillWords();
     }
 
