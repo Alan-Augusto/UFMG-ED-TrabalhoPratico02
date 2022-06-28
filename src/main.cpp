@@ -111,11 +111,9 @@ int main(int argc, char ** argv)
     }
     
    quicksort(T.words, T.size, M, S);
-   cout << "\n======Texto ordenado======" << endl;
-   cout << T;
+   
+   OutputFile << T;
 
-    cout << "\n======TEXO======\n" << T.text << endl;
-    cout << "======ORDEM======\n" << T.order << endl;
     InputFile.close();
     OutputFile.close();
 }

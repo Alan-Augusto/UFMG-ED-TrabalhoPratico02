@@ -11,7 +11,6 @@ using namespace std;
 string alphabet = "abcdefghijklmnopqrstuvwxyz";
 
 //ORDENAÇÃO
-
 void swap (Word *A, Word *B){
     Word *aux;
     aux = A;
@@ -90,7 +89,10 @@ void quicksort (Word *A, int n, int M, int S) {
         wordInOrder= word;
 
         for(int i=0; i<n ;i++){
-            wordInOrder[i] = alphabet[order.find(wordInOrder[i])];
+            //97 - 122
+            if( 97 <= wordInOrder[i] && wordInOrder[i] <=122 ){
+                wordInOrder[i] = alphabet[order.find(wordInOrder[i])];
+            }
         }
     }
 
@@ -240,11 +242,5 @@ void quicksort (Word *A, int n, int M, int S) {
             //words[i].LexOrder = order;
             words[i].setOrder(order);
             //cout << words[i] << "|"<< words[i].wordInOrder << endl;
-        }
-    }
-
-    void Text::Print(){
-        for(int i = 0; i<size; i++){
-            cout << words[i] << endl;
         }
     }

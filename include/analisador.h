@@ -68,6 +68,7 @@ class Text{
             for(int i = 0; i<D.size; i++){
                 stream << D.words[i] << endl;
             }
+            stream << "#FIM";
             
             return stream;            
         }
