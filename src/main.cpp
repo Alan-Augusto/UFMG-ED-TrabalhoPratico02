@@ -73,47 +73,49 @@ void parse_args(int argc,char ** argv){
 }
 
 
-int main(int argc, char ** argv)
-{
-    // Avaliar linha de comando
-    parse_args(argc,argv);
+int main(int argc, char ** argv){
+   // Avaliar linha de comando
+   parse_args(argc,argv);
 
-    //Abertura dos arquivos
-    ifstream InputFile(inputNameArq);
-	Assert(InputFile.is_open(), "Opening error in input file");
+   //Abertura dos arquivos
+   ifstream InputFile(inputNameArq);
+   Assert(InputFile.is_open(), "Opening error in input file");
 
-    ofstream OutputFile(outputNameArq);
-    Assert(OutputFile.is_open(), "Opening error in output file");
+   ofstream OutputFile(outputNameArq);
+   Assert(OutputFile.is_open(), "Opening error in output file");
 
-    //Criação do texto a ser lido:
-    Text T;
+   //VARIÁVEIS
+   //Texto a ser lido:
+   Text T;
+   //Informação que será recolhida
+   string information;
+   //Vai receber cada linha.
+   string line;
+   getline(InputFile, information);
 
-    //Obter qual informação será recolhida
-    string information;
-    //Vai receber cada linha.
-    string line;
-    getline(InputFile, information);
-
-            //Remover bug do getline
-            //string lixo;
-            //getline(InputFile, lixo);
+   //Se a primeira informação for o texto
+   if(information == "#TEXTO"){
+      //Recolhe primeiro o texto depois a ordem
+      T.InputText(InputFile);
+      T.InputOrder(InputFile);
+      //Faz a tradução das palavras de acordo com a ordem lexicográfica
+      T.SetOrder();
+   }
+   else if(information == "#ORDEM"){
+      //Recolhe primeiro a ordem depois o texto
+      T.InputOrder(InputFile);
+      T.InputText(InputFile);
+      //Faz a tradução das palavras de acordo com a ordem lexicográfica
+      T.SetOrder();
+   }
     
-    //Se a primeira informação for o texto
-    if(information == "#TEXTO"){
-        T.InputText(InputFile);
-        T.InputOrder(InputFile);
-        T.SetOrder();
-    }
-    else if(information == "#ORDEM"){
-        T.InputOrder(InputFile);
-        T.InputText(InputFile);
-        T.SetOrder();
-    }
-    
+   //Realiza a ordenação do vetor de palavras de acordo com a ordem lexicográfica
    quicksort(T.words, T.size, M, S);
    
+   //Imprime a saída de acordo com a especificação
    OutputFile << T;
 
-    InputFile.close();
-    OutputFile.close();
+   //Fecha os arquivos
+   InputFile.close();
+   OutputFile.close();
 }

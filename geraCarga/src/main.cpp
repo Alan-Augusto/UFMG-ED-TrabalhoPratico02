@@ -13,7 +13,7 @@
 
 using namespace std;
 
-char *validchars = "abcdefghijklmnopqrstuvwxyz-";
+char *validchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-";
 
 char *inputNameArq = NULL;
 char *outputNameArq  = NULL;

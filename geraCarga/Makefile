@@ -39,6 +39,18 @@ run:
 	$(EXE) -o ./output/carga500.txt -w 500 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	$(EXE) -o ./output/carga1000.txt -w 1000 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	$(EXE) -o ./output/carga1500.txt -w 1500 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga2000.txt -w 2000 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga3000.txt -w 3000 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga4000.txt -w 4000 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga5000.txt -w 5000 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga6000.txt -w 6000 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga7000.txt -w 7000 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga8000.txt -w 8000 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga9000.txt -w 9000 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga10000.txt -w 10000 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga100000.txt -w 100000 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	$(EXE) -o ./output/carga1000000.txt -w 1000000 -l "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 
 
 gprof:
