@@ -194,6 +194,8 @@ void quicksort (Word *A, int n, int M, int S) {
             else{
                 text += line;
             }
+            //Registra cada incremento que ocorre na string
+            escreveMemLog((long int)(&(text)),sizeof(string), 1);
         }
         CleanText();
         //Aloca o vetor de Words
@@ -220,17 +222,25 @@ void quicksort (Word *A, int n, int M, int S) {
         for (int i = 0; i < size; i++)
         {
             it >> aux;
+            //Se não for a primeira palavra inserida
             if(i>0){
                 bool achou = false;
+                //Procura se a palavra já foi definida
                 for (int k = j-1; k >= 0; k--)
-                {   
+                {
+                    //Se encontrar a palavra
                     if((aux) == words[k]){
+                        //Aumenta a contagem da palavra e não insere no vetor
                         words[k]++;
                         achou = true;
                         break;
                     }
+                    //Registra a posição de cada palavra nmo vetor na hora de comparar
+                    //escreveMemLog((long int)(&(words[k])),sizeof(Word), 1);
                 }
+                //Se não encontrar
                 if( !achou ){
+                    //Atribui a palavra ao vetor
                     aux >> words[j];
                     j++;
                 }
@@ -239,6 +249,8 @@ void quicksort (Word *A, int n, int M, int S) {
                 aux >> words[j];
                 j++;
             }
+
+            escreveMemLog((long int)(&(words[j])),sizeof(Word), 1);
         }
         size = j;
         

@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "memlog.h"
+#include "msgassert.h"
 
 using namespace std;
 

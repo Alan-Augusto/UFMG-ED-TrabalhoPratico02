@@ -34,7 +34,7 @@ comp: $(OBJ)
 	$(CC) $(CXXFLAGS) -o $(BIN_FOLFER)$(TARGET) $(OBJ)
 	
 run:
-#	$(EXE) -i ./input/2.tst.i -o ./output/output2.txt -m 4 -s 5
+	$(EXE) -i ./input/2.tst.i -o ./output/output2.txt -m 4 -s 5
 #	$(EXE) -i ./input/1.tst.i -o ./output/output1.txt -m 4 -s 5
 #	$(EXE) -i ./input/3.tst.i -o ./output/output3.txt -m 4 -s 5
 #	$(EXE) -i ./input/4.tst.i -o ./output/output4.txt -m 4 -s 5
@@ -44,11 +44,11 @@ run:
 #	$(EXE) -i ./input/8.tst.i -o ./output/output8.txt -m 4 -s 5
 #	$(EXE) -i ./input/9.tst.i -o ./output/output9.txt -m 4 -s 5
 #	$(EXE) -i ./input/10.tst.i -o ./output/output10.txt -m 4 -s 5
-	$(EXE) -i ./geraCarga/output/carga100000.txt -o ./output/output100000.txt -m 4 -s 5
+#	$(EXE) -i ./geraCarga/output/carga100000.txt -o ./output/output100000.txt -m 4 -s 5
 	
 
 gprof:
-#	gprof ./bin/main gmon.out > gprof.txt
+	gprof ./bin/main gmon.out > gprof.txt
 
 clean: 
 	@rm -rf $(OBJ_FOLDER)* $(BIN_FOLFER)* $(TARGET)
