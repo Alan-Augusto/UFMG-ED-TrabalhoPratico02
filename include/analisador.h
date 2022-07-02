@@ -8,8 +8,6 @@ using namespace std;
 
 class Word{    
     public:
-        //Lexigr
-        string LexOrder;
         string word;     
         string wordInOrder;  
         int qtd = 1; 
@@ -69,6 +67,7 @@ class Text{
         friend ostream &operator<<( ostream  &stream, Text &D ) { 
             for(int i = 0; i<D.size; i++){
                 stream << D.words[i] << endl;
+                leMemLog((long int)(&(D.words[i])),sizeof(string), 0);
             }
             stream << "#FIM";
             

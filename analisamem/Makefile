@@ -28,7 +28,9 @@ all: test use
 use: $(EXE)
 	if test -d /tmp/out; then rm -rf /tmp/out; fi
 	mkdir /tmp/out
-	$(EXE) -i ./teste/memlog.out -p /tmp/out/memlog
+	$(EXE) -i /tmp/memlog.out -p /tmp/out/ordenacao
+	gnuplot /tmp/out/*.gp
+	ls /tmp/out/
 
 test: $(TEST)
 	$(BIN)/testepilhaindexada
@@ -51,4 +53,4 @@ $(OBJ)/pilhaindexada.o: $(HDRS) $(SRC)/pilhaindexada.c
 	$(CC) $(CFLAGS) -o $(OBJ)/pilhaindexada.o $(SRC)/pilhaindexada.c 
 
 clean:
-	rm -f $(EXE) $(OBJS)  $(TOBJS)
+	rm -f $(EXE) $(TEST)* $(OBJS) $(TOBJS)

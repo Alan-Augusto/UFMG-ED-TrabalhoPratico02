@@ -5,6 +5,8 @@
 #include <math.h>
 #include <analisador.h>
 #include <regex>
+#include "memlog.h"
+#include "msgassert.h"
 
 using namespace std;
 
@@ -48,7 +50,7 @@ void particao (int esq, int dir, int *i, int *j, Word *A, int M, int S) {
    int soma = contador + 1;
    x = aux[soma/2];
      
-   //leMemLog((long int)(&(x)),sizeof(Word), 2);
+   //leMemLog((long int)(&(x)),sizeof(Word), 0);
    do {
       while (x > A[*i]) (*i)++;  
       while (x < A[*j]) (*j)--;  
@@ -71,6 +73,9 @@ void selectionsort(Word *array, int esq, int dir, int n) {
             min = j;
       }
       swap(array[i], array[min]);
+      //Faz a leitura de cada troca realizada
+      leMemLog((long int)(&(array[i])),sizeof(Word), 0);
+      escreveMemLog((long int)(&(array[min])),sizeof(Word), 0);
    }
 }
 
@@ -102,7 +107,10 @@ void quicksort (Word *A, int n, int M, int S) {
             //97 - 122
             if( 97 <= wordInOrder[i] && wordInOrder[i] <=122 ){
                 wordInOrder[i] = alphabet[order.find(wordInOrder[i])];
+                //Faz a leitura de elemento da palavra cada palavra que é traduzido
+                leMemLog((long int)(&(wordInOrder[i])),sizeof(char), 0);
             }
+            
         }
     }
 
@@ -194,8 +202,6 @@ void quicksort (Word *A, int n, int M, int S) {
             else{
                 text += line;
             }
-            //Registra cada incremento que ocorre na string
-            escreveMemLog((long int)(&(text)),sizeof(string), 1);
         }
         CleanText();
         //Aloca o vetor de Words
@@ -235,8 +241,6 @@ void quicksort (Word *A, int n, int M, int S) {
                         achou = true;
                         break;
                     }
-                    //Registra a posição de cada palavra nmo vetor na hora de comparar
-                    //escreveMemLog((long int)(&(words[k])),sizeof(Word), 1);
                 }
                 //Se não encontrar
                 if( !achou ){
@@ -250,7 +254,8 @@ void quicksort (Word *A, int n, int M, int S) {
                 j++;
             }
 
-            escreveMemLog((long int)(&(words[j])),sizeof(Word), 1);
+            //Faz a leitura da posição de cada palavra no vetor.
+            escreveMemLog((long int)(&(words[j])),sizeof(Word), 0);
         }
         size = j;
         
@@ -260,9 +265,6 @@ void quicksort (Word *A, int n, int M, int S) {
         
         for (int i = 0; i < size; i++)
         {
-            //Adiciona a ordem lexicográfica em cada palavra
-            //words[i].LexOrder = order;
             words[i].setOrder(order);
-            //cout << words[i] << "|"<< words[i].wordInOrder << endl;
         }
     }

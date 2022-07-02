@@ -8,7 +8,7 @@
 #====================================================
 
 CC = g++
-CXXFLAGS = -g -Wall -pg
+CXXFLAGS = -std=c++11 -g -Wall -pg
 
 # folders
 INCLUDE_FOLDER = ./include/

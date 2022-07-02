@@ -76,7 +76,7 @@ int main(int argc, char ** argv){
    parse_args(argc,argv);
 
    // inicia registro de acesso
-   string lognome = "./analisamem/teste/memlog.out";
+   string lognome = "/tmp/memlog.out";
    int n = lognome.length();
    char char_array[n + 1];
    strcpy(char_array, lognome.c_str());
@@ -87,9 +87,6 @@ int main(int argc, char ** argv){
    ifstream InputFile(inputNameArq);
    Assert(InputFile.is_open(), "Opening error in input file");
 
-   ofstream OutputFile(outputNameArq);
-   Assert(OutputFile.is_open(), "Opening error in output file");
-
       //====MEMLOG --> FASE 0====
       defineFaseMemLog(0);
       //Registra apenas a variável do texto
@@ -97,7 +94,7 @@ int main(int argc, char ** argv){
 //VARIÁVEIS
    //Texto a ser lido:
    Text T;
-   escreveMemLog((long int)(&(T)),sizeof(Text), 0);
+   //escreveMemLog((long int)(&(T)),sizeof(Text), 0);
    //Informação que será recolhida
    string information;
    //Vai receber cada linha.
@@ -146,6 +143,10 @@ int main(int argc, char ** argv){
    //Realiza a ordenação do vetor de palavras de acordo com a ordem lexicográfica
    quicksort(T.words, T.size, M, S);
    
+   //Abre o arquivo de saída
+   ofstream OutputFile(outputNameArq);
+   Assert(OutputFile.is_open(), "Opening error in output file");
+
    //Imprime a saída de acordo com a especificação
    OutputFile << T;
 
