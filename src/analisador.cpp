@@ -22,7 +22,6 @@ void insertsort(Word *array, int n) {
             swap(array[j-1], array[j]);
             trocou = 1;
          }
-         //leMemLog((long int)(&(array[j])),sizeof(Word), 2);
       }
       if (!trocou) {
          break;
@@ -35,28 +34,34 @@ void particao (int esq, int dir, int *i, int *j, Word *A, int M, int S) {
    
    *i = esq; *j = dir;
 
-   // encontra o pivô de acordo com o paramêtro M
-   int contador = 0;
-   for (int z = 0; z < M; z++) {
-      if(esq + contador < dir) {
-         contador++;
-      }
-   }
-   Word aux[contador+1];
-   for (int z = 0; z < contador + 1; z++) {
-      aux[z] = A[esq + z];
-   }
-   insertsort(aux, contador+1);
-   int soma = contador + 1;
-   x = aux[soma/2];
+   // Encontra o pivô de acordo com o paramêtro M
+    int contador = 0;
+    for (int z = 0; z < M; z++) {
+        if(esq + contador < dir) {
+            contador++;
+        }
+    }
+    Word aux[contador+1];
+    for (int z = 0; z < contador + 1; z++) {
+        aux[z] = A[esq + z];
+    }
+    insertsort(aux, contador+1);
+    int soma = contador + 1;
+    //Define a mediana do vetor auxiliar
+    x = aux[soma/2];
      
-   //leMemLog((long int)(&(x)),sizeof(Word), 0);
    do {
       while (x > A[*i]) (*i)++;  
       while (x < A[*j]) (*j)--;  
       if (*i <= *j) {
-         w = A[*i]; A[*i] = A[*j]; A[*j] = w;
+        //Realiza a troca de eleemntos
+         w = A[*i]; 
+         A[*i] = A[*j]; 
+         A[*j] = w;
          (*i)++; (*j)--;
+        leMemLog((long int)(&(A[*i])),sizeof(Word), 0);
+        escreveMemLog((long int)(&(A[*j])),sizeof(Word), 0);
+         
       }
    } while (*i <= *j);
    
@@ -65,7 +70,6 @@ void particao (int esq, int dir, int *i, int *j, Word *A, int M, int S) {
 void selectionsort(Word *array, int esq, int dir, int n) {
    int i, j, min;
    n += esq; j = dir;
-
    for (i = esq; i < n - 1; i++) {
       min = i;
       for (j = i + 1 ; j < n; j++) {
@@ -85,6 +89,7 @@ void ordena (int esq, int dir, Word *A, int M, int S) {
    int n = dir - esq +1;
    
    if (n <= S) 
+    //No momento adequado, realiza a ordenação simples
       selectionsort(A, esq, dir, n);
    else {
       particao (esq, dir, &i, &j, A, M, S);
@@ -154,10 +159,10 @@ void quicksort (Word *A, int n, int M, int S) {
         size = 0;
 
         //Elimina os caracteres desnecessários
-        regex pattern("[^A-Za-z0-9 -]");
+        regex pattern("[,.!?:;_]");
         text = regex_replace(text, pattern, "");
         
-        //Colocar em minpuscula
+        //Colocar em minuscula
         for_each(text.begin(), text.end(), [](char & c){c = ::tolower(c);});
 
         //Coloca apenas as Words puras com um espaço

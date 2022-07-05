@@ -101,36 +101,19 @@ int main(int argc, char ** argv){
    string line;
    getline(InputFile, information);
    
-
    //Se a primeira informação for o texto
    if(information == "#TEXTO"){
-      //====MEMLOG --> FASE 1====
-      //defineFaseMemLog(0);
-      //Registra os inputs do texto
-
       //Recolhe primeiro o texto depois a ordem
       T.InputText(InputFile);
       T.InputOrder(InputFile);
-      
-      //====MEMLOG --> FASE 2====
-      //defineFaseMemLog(0);
-      //Registra a tradução das palavras
 
       //Faz a tradução das palavras de acordo com a ordem lexicográfica
       T.SetOrder();
    }
    else if(information == "#ORDEM"){
-      //====MEMLOG --> FASE 1====
-      //defineFaseMemLog(0);
-      //Registra os inputs do texto
-
       //Recolhe primeiro a ordem depois o texto
       T.InputOrder(InputFile);
       T.InputText(InputFile);
-      
-      //====MEMLOG --> FASE 2====
-      //defineFaseMemLog(0);
-      //Registra a tradução das palavras
 
       //Faz a tradução das palavras de acordo com a ordem lexicográfica
       T.SetOrder();
