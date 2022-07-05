@@ -2,9 +2,7 @@
 #ESTRUTURAS DE DADOS - 2022/01
 #SISTEMAS DE INFORMAÇÃO
 #ALAN AUGUSTO MARTINS CAMPOS
-#TRABALHO PRÁTICO 01- POQUER
-#====================================================
-#IMPLEMENTAÇÃO DAS CLASSES E FUNCIONALIDADES REFERENTES AO JOGO DE PORQUER
+#TRABALHO PRÁTICO 02- ORDEM LEXICOGRÁFICA
 #====================================================
 
 CC = g++
@@ -28,7 +26,7 @@ EXE = $(BIN_FOLFER)main
 $(OBJ_FOLDER)%.o: $(SRC_FOLDER)%.cpp
 	$(CC) $(CXXFLAGS) -c $< -o $@ -I$(INCLUDE_FOLDER)
 
-all: comp run gprof
+all: comp run
 
 comp: $(OBJ) 
 	$(CC) $(CXXFLAGS) -o $(BIN_FOLFER)$(TARGET) $(OBJ)
@@ -44,20 +42,6 @@ run:
 	$(EXE) -i ./input/8.tst.i -o ./output/output8.txt -m 4 -s 5
 	$(EXE) -i ./input/9.tst.i -o ./output/output9.txt -m 4 -s 5
 	$(EXE) -i ./input/10.tst.i -o ./output/output10.txt -m 4 -s 5
-
-test:
-#Teste com carga de 20k palavras
-	$(EXE) -i ./input/carga20000.txt -o ./output/output20000.txt -m 4 -s 5
-	gprof ./bin/main gmon.out > gprof20000.txt
-#Teste com carga de 40k palavras
-	$(EXE) -i ./input/carga40000.txt -o ./output/output40000.txt -m 4 -s 5
-	gprof ./bin/main gmon.out > gprof40000.txt
-#Teste com carga de 80k palavras
-	$(EXE) -i ./input/carga80000.txt -o ./output/output80000.txt -m 4 -s 5
-	gprof ./bin/main gmon.out > gprof80000.txt
-#Teste com carga de 100k palavras
-	$(EXE) -i ./input/carga160000.txt -o ./output/output160000.txt -m 4 -s 5
-	gprof ./bin/main gmon.out > gprof160000.txt
 
 clean: 
 	@rm -rf $(OBJ_FOLDER)* $(BIN_FOLFER)* $(TARGET)
